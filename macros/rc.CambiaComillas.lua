@@ -1,5 +1,5 @@
 script_name = "Cambia Comillas"
-script_description = "Cambia las comillas simples en el texto de las líneas por comillas de apertura (“) y de cierre (”)"
+script_description = "Cambia las comillas simples en el texto de las líneas seleccionadas por comillas de apertura (“) y de cierre (”)"
 script_author = "CiferrC"
 script_version = "1.0"
 
