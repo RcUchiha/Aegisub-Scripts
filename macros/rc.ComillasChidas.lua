@@ -1,5 +1,5 @@
 script_name = "Comillas Chidas"
-script_description = "Reemplaza las comillas simples en el texto de las líneas seleccionadas por comillas de apertura (“) y de cierre (”)"
+script_description = "Reemplaza las comillas simples en el texto de las líneas seleccionadas por comillas de apertura (“) y cierre (”)"
 script_author = "CiferrC"
 script_version = "1.1"
 
@@ -19,6 +19,20 @@ function cambiarComillas(subtitles, selected_lines, active_line)
 
         -- Restaura las comillas dentro de los corchetes {} a su estado original
         nuevaLinea = nuevaLinea:gsub('\1', '"')
+
+        -- Verifica si hay comillas antes de los signos de apertura ¡ y ¿, o después de los signos de cierre ! y ?
+        if nuevaLinea:find('"%¡') or nuevaLinea:find('"%¿') or nuevaLinea:find('!%"') or nuevaLinea:find('?%"') then
+            -- Si hay, establece el aviso en el campo "Efecto" y mantiene la línea original
+            linea.effect = "Comillas por fuera de signos"
+            nuevaLinea = linea.text
+        end
+
+        -- Verifica si hay comillas después del punto
+        if nuevaLinea:find('%."') then
+            -- Si hay, establece un aviso diferente en el campo "Efecto" y mantiene la línea original
+            linea.effect = "Comillas por fuera de punto"
+            nuevaLinea = linea.text
+        end
 
         linea.text = nuevaLinea
         subtitles[index] = linea
