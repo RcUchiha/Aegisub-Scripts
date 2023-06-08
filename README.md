@@ -1,4 +1,4 @@
-# Scripts de Aegisub por RC®
+# Scripts de Aegisub por RC
 Algunas automatizaciones útiles (o no), escritas con amor para los vagos. 
 
 ## Comillas Chidas
