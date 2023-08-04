@@ -1,7 +1,9 @@
 script_name = "Comillas Chidas"
-script_description = "Reemplaza las comillas simples en el texto de las líneas seleccionadas por comillas de apertura (“) y cierre (”)"
+script_description = "Reemplaza las comillas simples en el texto de las líneas seleccionadas por comillas latinas de apertura (“) y cierre (”)"
 script_author = "CiferrC"
-script_version = "1.2"
+script_version = "1.3"
+
+menu_embedding = "CiferrC/"
 
 -- Función para cambiar las comillas en una línea
 function cambiarComillas(subtitles, selected_lines, active_line)
@@ -16,22 +18,32 @@ function cambiarComillas(subtitles, selected_lines, active_line)
         end)
 
         -- Reemplaza las comillas al inicio de una palabra con comillas de apertura
-        nuevaLinea = nuevaLinea:gsub('"%w', function(match) return '“' .. match:sub(2) end)
+        -- Incluye palabras que comienzan con letras acentuadas
+        nuevaLinea = nuevaLinea:gsub('"[%wÁÉÍÓÚáéíóú]', function(match) return '“' .. match:sub(2) end)
 
         -- Reemplaza las comillas al final de una palabra con comillas de cierre
-        nuevaLinea = nuevaLinea:gsub('%w"', function(match) return match:sub(1, -2) .. '”' end)
+        -- Incluye palabras que terminan con letras acentuadas
+        nuevaLinea = nuevaLinea:gsub('[%wÁÉÍÓÚáéíóú]"', function(match) return match:sub(1, -2) .. '”' end)
 
         -- Verifica si hay comillas antes de los signos de apertura ¡ y ¿, o después de los signos de cierre ! y ?
         if nuevaLinea:find('"%¡') or nuevaLinea:find('"%¿') or nuevaLinea:find('!%"') or nuevaLinea:find('?%"') then
-            -- Si hay, establece el aviso en el campo "Efecto" y mantiene la línea original
-            linea.effect = "Comillas por fuera de signos"
+            -- Si hay, agrega el aviso al campo "Efecto" precedido por una barra diagonal (/) y espacios si ya hay un comentario
+            if linea.effect and #linea.effect > 0 then
+                linea.effect = linea.effect .. " / Comillas por fuera de signos"
+            else
+                linea.effect = "Comillas por fuera de signos"
+            end
             nuevaLinea = linea.text
         end
 
         -- Verifica si hay comillas después del punto
         if nuevaLinea:find('%."') then
-            -- Si hay, establece un aviso diferente en el campo "Efecto" y mantiene la línea original
-            linea.effect = "Comillas por fuera de punto"
+            -- Si hay, agrega un aviso diferente al campo "Efecto" precedido por una barra diagonal (/) y espacios si ya hay un comentario
+            if linea.effect and #linea.effect > 0 then
+                linea.effect = linea.effect .. " / Comillas por fuera de punto"
+            else
+                linea.effect = "Comillas por fuera de punto"
+            end
             nuevaLinea = linea.text
         end
 
@@ -48,4 +60,4 @@ function cambiarComillas(subtitles, selected_lines, active_line)
 end
 
 -- Registrar la automatización en Aegisub
-aegisub.register_macro(script_name, script_description, cambiarComillas)
+aegisub.register_macro(menu_embedding..script_name, script_description, cambiarComillas)
