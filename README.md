@@ -8,4 +8,4 @@ Facilita la tarea de reemplazar todas las comillas simples dobles de tu archivo 
 Basado en el script de darkstar901 para comentar líneas, esta macro hace lo mismo, pero ofrece una GUI que te permite decidir si mantener los tags o no a la hora de ejecutarla, en vez de tener que modificar el código para ello. Y ya no da error en construcciones más recientes de Aegisub.
 
 ## Synchro AiO
-Básicamente convina varias de las funciones más comunes, como ajustar tiempos a keyframes cercanos (snap to keyframes), mediar intervalos entre tiempos y unir (como Joint Previous), pero un poco diferente. Esta macro está pensada para reemplazar los atajos de teclas C y V.
+Básicamente convina varias de las funciones más comunes, como ajustar tiempos a keyframes cercanos (Snap to Keyframes), mediar intervalos entre tiempos y unir la línea previa a la seleccionada (como Joint Previous), pero cuidando que no haya desfases añadiendo muchos milisegundos tanto a tiempos de salida como de entrada. En resumen, esta macro está pensada para emplearse en dos atajos de teclas: C y V, como una mejora para estas. 
