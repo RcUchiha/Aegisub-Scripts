@@ -1,9 +1,7 @@
-local tr = aegisub.gettext
-
-script_name = tr("T-T-Tartamudeos")
-script_description = tr("Encuentra y señala las líneas con tartamudeos faltantes o erróneos.")
+script_name = "T-T-Tartamudeos"
+script_description = "Encuentra y señala las líneas con tartamudeos faltantes o erróneos."
 script_author = "CiferrC"
-script_version = "1.0"
+script_version = "1.1"
 
 menu_embedding = "CiferrC/"
 
