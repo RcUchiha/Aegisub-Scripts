@@ -1,7 +1,7 @@
 script_name = "SAI Muxer"
 script_description = "Agrega líneas de pistas con rutas para multiplexar con SAI."
 script_author = "CiferrC"
-script_version = "1.1.1"
+script_version = "1.1.2"
 
 local config_path = aegisub.decode_path("?user") .. "\\sai_config.conf"
 
@@ -11,7 +11,7 @@ local function cargar_configuracion()
     local file = io.open(config_path, "r")
     if file then
         config.ruta_sai = file:read("*l") or ""
-        config.ruta_mkvmerge = file:read("*l") or ""  -- Leer la ruta de mkvmerge
+        config.ruta_mkvmerge = file:read("*l") or ""
         file:close()
     end
     return config
@@ -21,7 +21,7 @@ end
 local function guardar_configuracion(config)
     local file = io.open(config_path, "w")
     file:write(config.ruta_sai .. "\n")
-    file:write(config.ruta_mkvmerge .. "\n")  -- Guardar la ruta de mkvmerge
+    file:write(config.ruta_mkvmerge .. "\n")
     file:close()
 
     -- Mostrar un mensaje indicando dónde se guardó la configuración
@@ -106,7 +106,7 @@ local idiomas = {
     it = "Italiano",
     ru = "Ruso",
     pt = "Portugués",
-	ar = "Árabe",
+    ar = "Árabe",
     ["es-419"] = "Español Latino"  
 }
 
@@ -304,8 +304,8 @@ local function agregar_chapters(subs, sel)
     local function construir_gui_chapters(chapter_count)
         local gui = {
             { class = "label", label = "𝗖𝗮𝗽𝗶𝘁𝘂𝗹𝗼", x = 0, y = 0, width = 1, height = 1 },
-			{ class = "label", label = "𝗜𝗱𝗶𝗼𝗺𝗮 𝗱𝗲 𝗰𝗮𝗽.", x = 1, y = 0, width = 1, height = 1 },
-			{ class = "label", label = "𝗡𝗼𝗺𝗯𝗿𝗲 𝗱𝗲 𝗰𝗮𝗽𝗶𝘁𝘂𝗹𝗼", x = 2, y = 0, width = 1, height = 1 }
+            { class = "label", label = "𝗜𝗱𝗶𝗼𝗺𝗮 𝗱𝗲 𝗰𝗮𝗽.", x = 1, y = 0, width = 1, height = 1 },
+            { class = "label", label = "𝗡𝗼𝗺𝗯𝗿𝗲 𝗱𝗲 𝗰𝗮𝗽𝗶𝘁𝘂𝗹𝗼", x = 2, y = 0, width = 1, height = 1 }
         }
 
         for i = 1, chapter_count do
