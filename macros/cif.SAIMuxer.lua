@@ -257,18 +257,26 @@ local function agregar_lineas(subs, sel)
 
 			for i = #lineas, 1, -1 do
 				local effect_value = ""  -- Por defecto, el campo effect estará vacío.
-				
-				-- Verificar si la línea es uno de los tipos que deben tener "Agregar ruta" en el campo effect
-				if lineas[i]:match("{:video") or
-				   lineas[i]:match("{:audio") or
-				   lineas[i]:match("{:fonts") or
-				   lineas[i]:match("{:extraAudio") or
-				   lineas[i]:match("{:extraSubs") or
-				   lineas[i]:match("{:insert") then
-					effect_value = "[Agregar ruta]"
+
+				-- Asignar el tipo de pista al effect con [Agregar ruta]
+				if lineas[i]:match("{:video") then
+					effect_value = "video\\[Agregar ruta]"
+				elseif lineas[i]:match("{:audio") and not lineas[i]:match("{:extraAudio") then
+					effect_value = "audio\\[Agregar ruta]"
+				elseif lineas[i]:match("{:fonts") then
+					effect_value = "fonts\\[Agregar ruta]"
+				elseif lineas[i]:match("{:insert") then
+					effect_value = "insert\\[Agregar ruta]"
+				elseif lineas[i]:match("{:extraAudio") then
+					effect_value = "audio extra\\[Agregar ruta]"
+				elseif lineas[i]:match("{:extraSubs") then
+					effect_value = "subs extra\\[Agregar ruta]"
+				elseif lineas[i]:match("{:subLang") then
+					effect_value = "idioma subtítulo"
+				elseif lineas[i]:match("{:outputName") then
+					effect_value = "nombre de salida"
 				end
 
-				-- Insertar la línea con el valor adecuado para el campo effect
 				subs.insert(1, {
 					class = "dialogue",
 					text = lineas[i],
@@ -280,7 +288,7 @@ local function agregar_lineas(subs, sel)
 					margin_l = 0,
 					margin_r = 0,
 					margin_t = 0,
-					effect = effect_value,  -- Aquí se coloca el valor de effect
+					effect = effect_value,
 					comment = true
 				})
 			end
@@ -349,7 +357,7 @@ local function agregar_chapters(subs, sel)
 					margin_l = 0,
 					margin_r = 0,
 					margin_t = 0,
-					effect = "",
+					effect = "chapter",
 					comment = true
 				})
 			end
@@ -491,8 +499,10 @@ local function agregar_rutas(subs, sel)
                         line.text = string.format("{:%s}%s", tag, ruta_seleccionada)
                     end
 
-                    -- Si se ha agregado la ruta, se limpia el campo de efecto
-                    line.effect = ""
+                    -- Si se ha agregado la ruta, solo quitamos el "[Agregar ruta]" del campo effect
+                    if line.effect:match("\\%[Agregar ruta%]") then
+                        line.effect = line.effect:gsub("\\%[Agregar ruta%]", "")
+                    end
 
                     -- Guardar la línea modificada
                     subs[i] = line
