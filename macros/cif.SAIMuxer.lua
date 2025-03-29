@@ -97,7 +97,7 @@ end
 -- Definición del mapeo de idiomas
 local idiomas = {
     en = "Inglés",
-	enm = "Inglés Weeb",
+    enm = "Inglés Weeb",
     es = "Español",
     fr = "Francés",
     de = "Alemán",
