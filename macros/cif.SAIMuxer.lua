@@ -97,6 +97,7 @@ end
 -- Definición del mapeo de idiomas
 local idiomas = {
     en = "Inglés",
+	enm = "Inglés Weeb",
     es = "Español",
     fr = "Francés",
     de = "Alemán",
@@ -424,7 +425,7 @@ end
 -- Definir las extensiones en un lugar centralizado
 local extensiones = {
     video = "Archivo de video (*.mkv; *.mp4; *.avi; *.webm; *.mov; *.ts; *.m2ts; *.wmv; *.hevc; *.h264; *.h265)|*.mkv;*.mp4;*.avi;*.webm;*.mov;*.ts;*.m2ts;*.wmv;*.hevc;*.h264;*.h265",
-    audio = "Archivo de audio (*.mp3; *.wav; *.flac; *.eac3; *.aac; *.mka; *.opus; *.ac3; *.ogg; *.dts; *.wma)|*.mp3;*.wav;*.flac;*.eac3;*.aac;*.mka;*.opus;*.ac3;*.ogg;*.dts;*.wma",
+    audio = "Archivo de audio (*.mkv; *.mp3; *.wav; *.flac; *.eac3; *.aac; *.mka; *.opus; *.ac3; *.ogg; *.dts; *.wma)|*.mkv;*.mp3;*.wav;*.flac;*.eac3;*.aac;*.mka;*.opus;*.ac3;*.ogg;*.dts;*.wma",
     extraAudio = "Archivo de audio extra (*.mp3; *.wav; *.flac; *.eac3; *.aac; *.mka; *.opus; *.ac3; *.ogg; *.dts; *.wma)|*.mp3;*.wav;*.flac;*.eac3;*.aac;*.mka;*.opus;*.ac3;*.ogg;*.dts;*.wma",
     extraSubs = "Archivo de subtítulo extra (*.srt; *.ass; *.mks)|*.srt;*.ass;*.mks",
     insertSubs = "Archivo de subtítulos insert (*.srt; *.ass; *.mks)|*.srt;*.ass;*.mks",
