@@ -14,3 +14,6 @@ Ejemplo:
 
 ![image](https://github.com/RcUchiha/Aegisub-Scripts/assets/16442041/07bb8fad-8b72-4a8f-b356-a44d8baf4156)
 
+## Faster Whisper2ASS
+Transcribe las líneas seleccionadas haciendo uso de la [API Faster Whisper XXL](https://github.com/Purfview/whisper-standalone-win/releases/tag/Faster-Whisper-XXL) para voice to text. Esta macro facilita la obtención del kanji japonés, por ejemplo, para ayudar a la hora de traducir o corregir.
+
